@@ -15,7 +15,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class WebConfiguration {
 
-
     @Autowired
     PersonAuthenticationSuccessHandler personAuthenticationSuccessHandler;
     @Autowired
@@ -32,18 +31,24 @@ public class WebConfiguration {
                 .requestMatchers("/superadmin").hasRole("superadmin")
                 .anyRequest().permitAll()
                 )
+
                 .formLogin(form->form
                         .successHandler(personAuthenticationSuccessHandler)
                         .permitAll()
                 )
+
+
                 .userDetailsService(userPersonDetailsService);
         return httpSecurity.build();
     }
+
 
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
+
+
 
 
 }
