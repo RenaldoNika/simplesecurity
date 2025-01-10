@@ -24,10 +24,6 @@ public class Controller {
     @Autowired
     PersonService personService;
 
-
-
-
-
     @GetMapping("/home")
     public String home() {
         return "home";
